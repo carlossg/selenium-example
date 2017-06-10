@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -26,19 +25,7 @@ public class ExampleTest {
     @Before
     public void setUp() throws Exception {
         DesiredCapabilities capabilities = new DesiredCapabilities(SELENIUM_BROWSER, "", Platform.ANY);
-        // Retry connecting
-        WebDriverException ex = null;
-        for (int i = 0; i < 10; i++) {
-            try {
-                this.driver = new RemoteWebDriver(new URL(SELENIUM_URL), capabilities);
-                return;
-            } catch (WebDriverException e) {
-                ex = e;
-                System.out.println(String.format("Error connecting to %s: %s. Retrying", SELENIUM_URL, e));
-                Thread.sleep(1000);
-            }
-        }
-        throw ex;
+        this.driver = new RemoteWebDriver(new URL(SELENIUM_URL), capabilities);
     }
 
     @Test
