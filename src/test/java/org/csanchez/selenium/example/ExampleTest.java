@@ -2,8 +2,12 @@ package org.csanchez.selenium.example;
 
 import java.net.URL;
 
+import org.jenkinsci.test.acceptance.guice.TestName;
+import org.jenkinsci.test.acceptance.junit.FailureDiagnostics;
+import org.jenkinsci.test.acceptance.recorder.TestRecorderRule;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
@@ -21,6 +25,11 @@ public class ExampleTest {
     private final static int SLEEP = Integer.parseInt(System.getProperty("sleep", "10000"));
 
     protected WebDriver driver;
+
+    private FailureDiagnostics diag = new FailureDiagnostics(new TestName("example-" + SELENIUM_BROWSER));
+
+    @Rule
+    public TestRecorderRule recorder = new TestRecorderRule(diag);
 
     @Before
     public void setUp() throws Exception {

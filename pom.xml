@@ -4,16 +4,16 @@
  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.csanchez.selenium</groupId>
-  <artifactId>example</artifactId>
+  <artifactId>selenium-example</artifactId>
   <version>1.0-SNAPSHOT</version>
   <name>Selenium Example</name>
   <description>Selenium Example</description>
 
-  <properties> 
+  <properties>
     <selenium.url>http://localhost:4444/wd/hub</selenium.url>
     <selenium.browser>firefox</selenium.browser>
     <sleep>10000</sleep>
-  </properties> 
+  </properties>
 
   <dependencies>
     <dependency>
@@ -27,6 +27,11 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci</groupId>
+      <artifactId>acceptance-test-harness</artifactId>
+      <version>1.59</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -39,6 +44,7 @@
             <selenium.url>${selenium.url}</selenium.url>
             <selenium.browser>${selenium.browser}</selenium.browser>
             <sleep>${sleep}</sleep>
+            <RECORDER>always</RECORDER>
           </systemPropertyVariables>
         </configuration>
       </plugin>
